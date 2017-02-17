@@ -11,10 +11,29 @@
 <div class="row">
   <div class="large-12 columns">
     <h1>Welcome to our 465 site</h1>
+    <!-- <p>{{ submit }}</p> -->
   </div>
 </div>
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-5 columns">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="large-12 columns">
+          {{ form.errors }}
+          {{ form.suggestion.label }}
+          {{ form.suggestion }}
+          </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <input type="submit" value="Submit" class="button">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="large-7 columns">
+    <h2>Suggestions</h2>
     <ul>
     {% for element in content %}
     <li>{{ element.suggestion }}</li>
