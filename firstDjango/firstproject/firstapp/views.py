@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import *
 from .forms import *
@@ -29,3 +30,23 @@ def index(request):
         'submit':submit
         }
     return render(request,'home.html',context)
+
+@csrf_exempt
+def suggestions(request):
+    if request.method == 'GET':
+        suggestions = Suggestion.objects.all()
+        suggest = {}
+        suggest['suggestions']=[]
+        for suggestion in suggestions:
+            suggest['suggestions']+=[{
+                'id':suggestion.id,
+                'suggestion': suggestion.suggestion
+                }]
+        return JsonResponse(suggest)
+    if request.method == 'POST':
+        return HttpResponse("POST successful")
+    return HttpResponse("404")
+        # { 'suggestions':[
+        #     {'id': id, 'suggestion': suggestion}
+        # ]
+        # }
