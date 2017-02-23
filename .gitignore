@@ -88,3 +88,5 @@ django/
 
 # Rope project settings
 .ropeproject
+
+node_modules/
