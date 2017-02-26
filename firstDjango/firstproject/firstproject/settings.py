@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'firstapp',
-    'webpack_loader',
+    # 'third_party'
+    #'compressor',
+     'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -121,10 +123,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,"static")
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'assets'),
-    os.path.join(BASE_DIR, "firstapp","static"),
-]
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'assets'), # We do this so that django's collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
+)
 
 WEBPACK_LOADER = {
     'DEFAULT': {

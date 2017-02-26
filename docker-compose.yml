@@ -1,9 +1,0 @@
-web:
-  restart: always
-  build: .
-  ports:
-    - "8000:8000"
-  volumes:
-    - ./firstDjango/firstproject/:/code/
-  #command: /bin/bash
-  command: python manage.py runserver 0.0.0.0:8000

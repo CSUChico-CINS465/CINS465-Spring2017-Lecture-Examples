@@ -18,12 +18,15 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader'}, // to transform JSX into JS
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      }, // to transform JSX into JS
     ],
   },
 
   resolve: {
-    modulesDirectories: ['node_modules', 'bower_components'],
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
 }
