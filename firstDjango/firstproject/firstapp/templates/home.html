@@ -1,5 +1,6 @@
 {% extends "default.html" %}
 {% load static %}
+{% load render_bundle from webpack_loader %}
 
 {% block title %}
 {{ title }}
@@ -34,12 +35,21 @@
   </div>
   <div class="large-7 columns">
     <h2>Suggestions</h2>
-    <ul>
-    {% for element in content %}
-    <li>{{ element.suggestion }}</li>
-    {% endfor %}
-    </ul>
+    <div id="suggest_list">
+      <ul>
+      {% for element in content %}
+      <li>{{ element.suggestion }}</li>
+      {% endfor %}
+      </ul>
+    </div>
 
   </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+{% render_bundle 'main' %}
 {% endblock %}
