@@ -83,6 +83,7 @@ venv/
 ENV/
 django/
 node_modules/
+bundles/
 
 # Spyder project settings
 .spyderproject
