@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate
 
 from .models import *
 from .forms import *
@@ -50,3 +51,22 @@ def suggestions(request):
         #     {'id': id, 'suggestion': suggestion}
         # ]
         # }
+
+def register(request):
+    if request.method == "POST":
+        form = registration_form(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user = authenticate(
+                username=form.cleaned_data.get('username'),
+                password=form.cleaned_data.get('password1'))
+            #login call back
+            return HttpResponseRedirect('/')
+
+    else:
+        form = registration_form()
+    context = {
+        'title':'Register',
+        'form':form
+    }
+    return render(request, 'register.html', context)
