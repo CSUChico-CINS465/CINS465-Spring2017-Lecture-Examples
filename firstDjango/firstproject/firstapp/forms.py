@@ -1,6 +1,6 @@
 from django import forms
 
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 class registration_form(UserCreationForm):
@@ -27,3 +27,18 @@ class SuggestionForm(forms.Form):
         widget=forms.TextInput(attrs={
             'placeholder': 'enter suggestion'
             }))
+
+class LoginForm(AuthenticationForm):
+    username=forms.CharField(
+        label="Username",
+        max_length=30,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'name':'username'
+        })
+    )
+    password=forms.CharField(
+        label="Password",
+        max_length=32,
+        widget=forms.PasswordInput()
+    )
