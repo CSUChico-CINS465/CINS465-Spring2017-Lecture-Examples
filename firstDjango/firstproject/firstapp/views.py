@@ -2,14 +2,14 @@ from django.shortcuts import render
 
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
 
 # Create your views here.
-@login_required(login_url="/login/")
+#@login_required(login_url="/login/")
 def index(request):
     if request.method == 'POST':
         form = SuggestionForm(request.POST)
@@ -63,6 +63,7 @@ def register(request):
                 username=form.cleaned_data.get('username'),
                 password=form.cleaned_data.get('password1'))
             #login call back
+            login(request,user)
             return HttpResponseRedirect('/')
 
     else:
