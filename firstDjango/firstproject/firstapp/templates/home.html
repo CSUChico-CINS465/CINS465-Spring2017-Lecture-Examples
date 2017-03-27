@@ -9,67 +9,29 @@
 
 
 {% block content %}
-<!-- Start Top Bar -->
-<div class="top-bar" id="main-menu">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">Django Site</li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <ul class="dropdown menu" data-dropdown-menu>
-      {% if user.is_authenticated %}
-      <li><a href="/logout/">Logout</a></li>
-      {% else %}
-      <li><a href="/login/">Log In</a></li>
-      {% endif %}
-    </ul>
-  </div>
-</div>
-<!-- End Top Bar -->
-<div class="row">
-  <div class="large-12 columns">
-    <h1>Welcome to our 465 site</h1>
-    <!-- <p>{{ submit }}</p> -->
-  </div>
-</div>
-<div class="row">
-  <div class="large-5 columns">
-    {% if user.is_authenticated %}
-      <h3>Welcome {{ user.username }}</h3>
-    {% endif %}
-    {% if user.is_authenticated %}
-    <form action="" method="post">
-      {% csrf_token %}
-      <div class="row">
-        <div class="large-12 columns">
-          {{ form.errors }}
-          {{ form.suggestion.label }}
-          {{ form.suggestion }}
-          </div>
+    <!-- Start Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li class="menu-text">465 Blog</li>
+          {% if user.is_authenticated %}
+          <li><a href="/logout/">Logout</a></li>
+          {% else %}
+          <li><a href="/login/">Log In</a></li>
+          {% endif %}
+          <!-- <li><a href="#">Two</a></li>
+          <li><a href="#">Three</a></li> -->
+        </ul>
       </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <input type="submit" value="Submit" class="button">
-        </div>
-      </div>
-    </form>
-    {% else %}
-    <p> Log in to make your own suggestions</p>
-    {% endif %}
-  </div>
-  <div class="large-7 columns">
-    <h2>Suggestions</h2>
-    <div id="suggest_list">
-      <ul>
-      {% for element in content %}
-      <li>{{ element.suggestion }}</li>
-      {% endfor %}
-      </ul>
     </div>
+    <!-- End Top Bar -->
 
-  </div>
-</div>
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>CINS 465</h1>
+        <h2 class="subheader">Learning to create a CMS</h2>
+      </div>
+    </div>
 {% endblock %}
 
 {% block scripts %}
