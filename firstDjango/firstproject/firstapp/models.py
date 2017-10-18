@@ -13,12 +13,12 @@ class comment(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     author = models.ForeignKey(User, null=True, blank=True)
-    comments = models.ManyToManyField(comment)
+    #comments = models.ManyToManyField(comment)
 
 class blog_post(models.Model):
     title = models.CharField(max_length=140)
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     author = models.ForeignKey(User, null=True, blank=True)
-    comments = models.ManyToManyField(comment)
+    #comments = models.ManyToManyField(comment)
     image=models.ImageField(max_length=144, upload_to='uploads/%Y/%m/%d/')
